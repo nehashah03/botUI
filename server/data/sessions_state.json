@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "updatedAt": 1776422679416,
+  "activeSessionId": "0c2c2e8b-6657-40af-a8c8-29111e9dcff3",
+  "sessions": [
+    {
+      "id": "0c2c2e8b-6657-40af-a8c8-29111e9dcff3",
+      "title": "Hi",
+      "createdAt": 1776422642319,
+      "updatedAt": 1776422676956,
+      "messages": [
+        {
+          "id": "faf2f394-b28d-4599-8090-57a7025f9a72",
+          "role": "user",
+          "content": "Hi",
+          "timestamp": 1776422642321,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "e3f8b3b7-8ebc-4378-a0a8-811453bd3ff8",
+          "role": "assistant",
+          "content": "## Analysis Complete\n \nHere's what I found in the uploaded documents:\n \n### Key Findings\n \n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n \n### Metrics Summary\n \n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n \n> See pool and disk notes [3][4].\n \nLet me know if you'd like me to dig deeper.",
+          "timestamp": 1776422642322,
+          "status": "complete",
+          "activityLog": [
+            "Analyzing your query — classifying intent and required tools.",
+            "Searching your knowledge base and uploaded documents…",
+            "Found passages from 4 documents.",
+            "Extracting key details and grounding facts from retrieved passages.",
+            "Creating the answer from fetched passages and tool results.",
+            "Draft complete — streaming the final response to the client…"
+          ],
+          "streamMeta": {
+            "searchQuery": "Hi",
+            "foundSummary": "Found 4 document(s)",
+            "documents": [
+              "Evolution_of_the_Internet_Detailed.pdf",
+              "performance_metrics_report.docx",
+              "connection_pool_audit.json",
+              "node_disk_io_timeseries.csv"
+            ]
+          },
+          "toolOutputs": [
+            {
+              "id": "tool-1",
+              "name": "log_analyzer",
+              "content": "Scanned 14,232 log entries.",
+              "type": "text"
+            }
+          ],
+          "sources": [
+            {
+              "name": "Evolution_of_the_Internet_Detailed.pdf",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/Evolution_of_the_Internet_Detailed.pdf",
+              "snippet": "Authentication service RSS memory growing..."
+            },
+            {
+              "name": "performance_metrics_report.docx",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/performance_metrics_report.docx",
+              "snippet": "P99 latency for user_sessions…"
+            },
+            {
+              "name": "connection_pool_audit.json",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/connection_pool_audit.json",
+              "snippet": "pool_max=100 reached 47×/24h…"
+            },
+            {
+              "name": "node_disk_io_timeseries.csv",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/node_disk_io_timeseries.csv",
+              "snippet": "sda util >90% during peak…"
+            }
+          ],
+          "citations": [
+            {
+              "index": 1,
+              "text": "Memory leak detected",
+              "source": "Evolution_of_the_Internet_Detailed.pdf",
+              "chunk": "…RSS for `auth-service` grew ~50MB/hr; heap dump shows retained char[] from logging buffer …"
+            },
+            {
+              "index": 2,
+              "text": "Slow queries",
+              "source": "performance_metrics_report.docx",
+              "chunk": "…`user_sessions` query scanned 4.1M rows; missing index on (tenant_id, updated_at) …"
+            },
+            {
+              "index": 3,
+              "text": "Pool exhaustion",
+              "source": "connection_pool_audit.json",
+              "chunk": "…`pool.acquire()` timeouts 02:10–02:22 UTC; active=100 idle=0 …"
+            },
+            {
+              "index": 4,
+              "text": "Disk saturation",
+              "source": "node_disk_io_timeseries.csv",
+              "chunk": "…`/dev/sda` avgqu-sz 42; iowait 31% with LSM compaction …"
+            }
+          ],
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Determining next steps",
+              "status": "complete",
+              "substeps": [
+                "Inferring task type from phrasing…",
+                "Binding workspace + retention policy…",
+                "Selecting retrieval tools (BM25 + dense)…"
+              ]
+            },
+            {
+              "id": "step-2",
+              "label": "Searching your documents",
+              "description": "Looking up relevant context",
+              "status": "complete",
+              "substeps": [
+                "Tokenizing query for hybrid search…",
+                "Scanning chunk n-grams in vector index…",
+                "Reranking passages with cross-encoder…"
+              ]
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting key details",
+              "description": "Processing document content",
+              "status": "complete",
+              "substeps": [
+                "Extracting entities & numeric claims…",
+                "Grounding spans to source offsets…",
+                "Building evidence table for answer…"
+              ]
+            },
+            {
+              "id": "step-4",
+              "label": "Creating answer from fetched data",
+              "description": "Composing the response from retrieved sources",
+              "status": "complete",
+              "substeps": [
+                "Drafting markdown with citation placeholders…",
+                "Running consistency pass on facts…",
+                "Handoff to token stream…"
+              ]
+            }
+          ]
+        }
+      ],
+      "favorite": false
+    }
+  ]
+}
