@@ -1,46 +1,25 @@
 {
   "version": 1,
-  "updatedAt": 1776422679416,
-  "activeSessionId": "0c2c2e8b-6657-40af-a8c8-29111e9dcff3",
+  "updatedAt": 1776681430040,
+  "activeSessionId": "9c50e42c-550e-4b50-8e81-4fdebb9d624e",
   "sessions": [
     {
-      "id": "0c2c2e8b-6657-40af-a8c8-29111e9dcff3",
-      "title": "Hi",
-      "createdAt": 1776422642319,
-      "updatedAt": 1776422676956,
+      "favorite": false,
       "messages": [
         {
-          "id": "faf2f394-b28d-4599-8090-57a7025f9a72",
+          "id": "eb855529-b108-4127-882f-1db43241ccc6",
           "role": "user",
           "content": "Hi",
-          "timestamp": 1776422642321,
+          "timestamp": 1776673271199,
           "status": "complete",
           "attachments": []
         },
         {
-          "id": "e3f8b3b7-8ebc-4378-a0a8-811453bd3ff8",
+          "id": "cb468f20-e78f-43f3-896c-5916f0018e01",
           "role": "assistant",
-          "content": "## Analysis Complete\n \nHere's what I found in the uploaded documents:\n \n### Key Findings\n \n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n \n### Metrics Summary\n \n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n \n> See pool and disk notes [3][4].\n \nLet me know if you'd like me to dig deeper.",
-          "timestamp": 1776422642322,
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "timestamp": 1776673271200,
           "status": "complete",
-          "activityLog": [
-            "Analyzing your query — classifying intent and required tools.",
-            "Searching your knowledge base and uploaded documents…",
-            "Found passages from 4 documents.",
-            "Extracting key details and grounding facts from retrieved passages.",
-            "Creating the answer from fetched passages and tool results.",
-            "Draft complete — streaming the final response to the client…"
-          ],
-          "streamMeta": {
-            "searchQuery": "Hi",
-            "foundSummary": "Found 4 document(s)",
-            "documents": [
-              "Evolution_of_the_Internet_Detailed.pdf",
-              "performance_metrics_report.docx",
-              "connection_pool_audit.json",
-              "node_disk_io_timeseries.csv"
-            ]
-          },
           "toolOutputs": [
             {
               "id": "tool-1",
@@ -59,16 +38,6 @@
               "name": "performance_metrics_report.docx",
               "url": "https://example-bucket.s3.amazonaws.com/docs/performance_metrics_report.docx",
               "snippet": "P99 latency for user_sessions…"
-            },
-            {
-              "name": "connection_pool_audit.json",
-              "url": "https://example-bucket.s3.amazonaws.com/docs/connection_pool_audit.json",
-              "snippet": "pool_max=100 reached 47×/24h…"
-            },
-            {
-              "name": "node_disk_io_timeseries.csv",
-              "url": "https://example-bucket.s3.amazonaws.com/docs/node_disk_io_timeseries.csv",
-              "snippet": "sda util >90% during peak…"
             }
           ],
           "citations": [
@@ -76,76 +45,473 @@
               "index": 1,
               "text": "Memory leak detected",
               "source": "Evolution_of_the_Internet_Detailed.pdf",
-              "chunk": "…RSS for `auth-service` grew ~50MB/hr; heap dump shows retained char[] from logging buffer …"
-            },
-            {
-              "index": 2,
-              "text": "Slow queries",
-              "source": "performance_metrics_report.docx",
-              "chunk": "…`user_sessions` query scanned 4.1M rows; missing index on (tenant_id, updated_at) …"
-            },
-            {
-              "index": 3,
-              "text": "Pool exhaustion",
-              "source": "connection_pool_audit.json",
-              "chunk": "…`pool.acquire()` timeouts 02:10–02:22 UTC; active=100 idle=0 …"
-            },
-            {
-              "index": 4,
-              "text": "Disk saturation",
-              "source": "node_disk_io_timeseries.csv",
-              "chunk": "…`/dev/sda` avgqu-sz 42; iowait 31% with LSM compaction …"
+              "chunk": "RSS grew ~50MB/hr"
             }
           ],
           "processingSteps": [
             {
               "id": "step-1",
               "label": "Analyzing your query",
-              "description": "Determining next steps",
+              "description": "Understanding intent",
               "status": "complete",
-              "substeps": [
-                "Inferring task type from phrasing…",
-                "Binding workspace + retention policy…",
-                "Selecting retrieval tools (BM25 + dense)…"
-              ]
+              "substeps": []
             },
             {
               "id": "step-2",
-              "label": "Searching your documents",
-              "description": "Looking up relevant context",
+              "label": "Searching documents",
+              "description": "Retrieving context",
               "status": "complete",
-              "substeps": [
-                "Tokenizing query for hybrid search…",
-                "Scanning chunk n-grams in vector index…",
-                "Reranking passages with cross-encoder…"
-              ]
+              "substeps": []
             },
             {
               "id": "step-3",
-              "label": "Extracting key details",
-              "description": "Processing document content",
+              "label": "Extracting insights",
+              "description": "Processing data",
               "status": "complete",
-              "substeps": [
-                "Extracting entities & numeric claims…",
-                "Grounding spans to source offsets…",
-                "Building evidence table for answer…"
-              ]
+              "substeps": []
             },
             {
               "id": "step-4",
-              "label": "Creating answer from fetched data",
-              "description": "Composing the response from retrieved sources",
-              "status": "complete",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
               "substeps": [
-                "Drafting markdown with citation placeholders…",
-                "Running consistency pass on facts…",
-                "Handoff to token stream…"
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
               ]
             }
           ]
         }
       ],
-      "favorite": false
+      "id": "bcf17a38-8eab-4432-bf6e-51efa8edb02f",
+      "title": "Hi",
+      "createdAt": 1776672175911,
+      "updatedAt": 1776673288386
+    },
+    {
+      "favorite": false,
+      "messages": [
+        {
+          "id": "af585859-79c2-4306-a10a-4e584541ccc2",
+          "role": "user",
+          "content": "heyyyyyyyyyyyyy",
+          "timestamp": 1776672154949,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "22c9ab15-10e7-4ec5-b88b-7fb6ed060168",
+          "role": "assistant",
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "timestamp": 1776672154950,
+          "status": "complete",
+          "toolOutputs": [
+            {
+              "id": "tool-1",
+              "name": "log_analyzer",
+              "content": "Scanned 14,232 log entries.",
+              "type": "text"
+            }
+          ],
+          "sources": [
+            {
+              "name": "Evolution_of_the_Internet_Detailed.pdf",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/Evolution_of_the_Internet_Detailed.pdf",
+              "snippet": "Authentication service RSS memory growing..."
+            },
+            {
+              "name": "performance_metrics_report.docx",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/performance_metrics_report.docx",
+              "snippet": "P99 latency for user_sessions…"
+            }
+          ],
+          "citations": [
+            {
+              "index": 1,
+              "text": "Memory leak detected",
+              "source": "Evolution_of_the_Internet_Detailed.pdf",
+              "chunk": "RSS grew ~50MB/hr"
+            }
+          ],
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Understanding intent",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-2",
+              "label": "Searching documents",
+              "description": "Retrieving context",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting insights",
+              "description": "Processing data",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-4",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
+              "substeps": [
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "8e865bd0-3dad-4cf5-8867-76b80d2cc13f",
+          "role": "user",
+          "content": "bjbkj",
+          "timestamp": 1776679663471,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "5c2f0c37-3ab3-4b4a-bf06-c23f7777b854",
+          "role": "assistant",
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "status": "complete",
+          "timestamp": 1776679663472,
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Understanding intent",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-2",
+              "label": "Searching documents",
+              "description": "Retrieving context",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting insights",
+              "description": "Processing data",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-4",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
+              "substeps": [
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "65eb9fc2-ebea-4be5-a636-b5e61edc3e8c",
+          "role": "user",
+          "content": "Hey",
+          "timestamp": 1776679879970,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "74e4ddd1-4328-47fe-893f-498a53b4a40d",
+          "role": "assistant",
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "status": "complete",
+          "timestamp": 1776679879971,
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Understanding intent",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-2",
+              "label": "Searching documents",
+              "description": "Retrieving context",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting insights",
+              "description": "Processing data",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-4",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
+              "substeps": [
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "520173a0-f17f-4010-a0a3-6813ae75e28c",
+          "role": "user",
+          "content": "hy",
+          "timestamp": 1776680195475,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "e8a73d7b-eb09-4620-982c-0c6c832c4545",
+          "role": "assistant",
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "timestamp": 1776680195476,
+          "status": "complete",
+          "toolOutputs": [
+            {
+              "id": "tool-1",
+              "name": "log_analyzer",
+              "content": "Scanned 14,232 log entries.",
+              "type": "text"
+            }
+          ],
+          "sources": [
+            {
+              "name": "Evolution_of_the_Internet_Detailed.pdf",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/Evolution_of_the_Internet_Detailed.pdf",
+              "snippet": "Authentication service RSS memory growing..."
+            },
+            {
+              "name": "performance_metrics_report.docx",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/performance_metrics_report.docx",
+              "snippet": "P99 latency for user_sessions…"
+            }
+          ],
+          "citations": [
+            {
+              "index": 1,
+              "text": "Memory leak detected",
+              "source": "Evolution_of_the_Internet_Detailed.pdf",
+              "chunk": "RSS grew ~50MB/hr"
+            }
+          ],
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Understanding intent",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-2",
+              "label": "Searching documents",
+              "description": "Retrieving context",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting insights",
+              "description": "Processing data",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-4",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
+              "substeps": [
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
+              ]
+            }
+          ]
+        }
+      ],
+      "id": "9c50e42c-550e-4b50-8e81-4fdebb9d624e",
+      "title": "heyyyyyyyyyyyyy",
+      "createdAt": 1776672151285,
+      "updatedAt": 1776680228646
+    },
+    {
+      "favorite": false,
+      "messages": [
+        {
+          "id": "99254ae2-9d8b-4961-b698-bc8d01646ff6",
+          "role": "user",
+          "content": "Hi",
+          "timestamp": 1776671820307,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "95b6c47c-000f-47c5-bf66-db6b7c278def",
+          "role": "assistant",
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "timestamp": 1776671820308,
+          "status": "complete",
+          "toolOutputs": [
+            {
+              "id": "tool-1",
+              "name": "log_analyzer",
+              "content": "Scanned 14,232 log entries.",
+              "type": "text"
+            }
+          ],
+          "sources": [
+            {
+              "name": "Evolution_of_the_Internet_Detailed.pdf",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/Evolution_of_the_Internet_Detailed.pdf",
+              "snippet": "Authentication service RSS memory growing..."
+            },
+            {
+              "name": "performance_metrics_report.docx",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/performance_metrics_report.docx",
+              "snippet": "P99 latency for user_sessions…"
+            }
+          ],
+          "citations": [
+            {
+              "index": 1,
+              "text": "Memory leak detected",
+              "source": "Evolution_of_the_Internet_Detailed.pdf",
+              "chunk": "RSS grew ~50MB/hr"
+            }
+          ],
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Understanding intent",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-2",
+              "label": "Searching documents",
+              "description": "Retrieving context",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting insights",
+              "description": "Processing data",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-4",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
+              "substeps": [
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "beefe9c8-bc8f-4f2b-8d7b-7caef0bd09e2",
+          "role": "user",
+          "content": "Hello",
+          "timestamp": 1776672138290,
+          "status": "complete",
+          "attachments": []
+        },
+        {
+          "id": "f74421bb-17ba-4dd6-b8f2-ee17c7654b20",
+          "role": "assistant",
+          "content": "## Analysis Complete\n\nHere's what I found in the uploaded documents:\n\n### Key Findings\n\n1. **Memory leak detected** in the authentication service — RSS growing ~50MB/hour [1]\n2. **Slow queries** on the `user_sessions` table — P99 latency at 2.3s [2]\n3. **Connection pool exhaustion** — max connections hit 47 times in the last 24h [3]\n4. **Disk saturation** on primary nodes during peak [4]\n\n### Metrics Summary\n\n| Metric | Current | Threshold | Status |\n|--------|---------|-----------|--------|\n| CPU Usage | 78% | 85% | ⚠️ Warning |\n\n> See pool and disk notes [3][4].\n\nLet me know if you'd like me to dig deeper.\n",
+          "timestamp": 1776672138290,
+          "status": "complete",
+          "toolOutputs": [
+            {
+              "id": "tool-1",
+              "name": "log_analyzer",
+              "content": "Scanned 14,232 log entries.",
+              "type": "text"
+            }
+          ],
+          "sources": [
+            {
+              "name": "Evolution_of_the_Internet_Detailed.pdf",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/Evolution_of_the_Internet_Detailed.pdf",
+              "snippet": "Authentication service RSS memory growing..."
+            },
+            {
+              "name": "performance_metrics_report.docx",
+              "url": "https://example-bucket.s3.amazonaws.com/docs/performance_metrics_report.docx",
+              "snippet": "P99 latency for user_sessions…"
+            }
+          ],
+          "citations": [
+            {
+              "index": 1,
+              "text": "Memory leak detected",
+              "source": "Evolution_of_the_Internet_Detailed.pdf",
+              "chunk": "RSS grew ~50MB/hr"
+            }
+          ],
+          "processingSteps": [
+            {
+              "id": "step-1",
+              "label": "Analyzing your query",
+              "description": "Understanding intent",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-2",
+              "label": "Searching documents",
+              "description": "Retrieving context",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-3",
+              "label": "Extracting insights",
+              "description": "Processing data",
+              "status": "complete",
+              "substeps": []
+            },
+            {
+              "id": "step-4",
+              "label": "Generating response",
+              "description": "Composing answer",
+              "status": "active",
+              "substeps": [
+                "Drafting answer",
+                "Formatting markdown",
+                "Finalizing output"
+              ]
+            }
+          ]
+        }
+      ],
+      "id": "456ed6a0-424c-46ba-98ce-9690f455829c",
+      "title": "Hi",
+      "createdAt": 1776671820306,
+      "updatedAt": 1776672154712
     }
   ]
 }
